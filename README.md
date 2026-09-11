@@ -1,4 +1,9 @@
 # SqlOptimizer
+<p align="center">
+  <a href="https://paypal.me/TheMaxLab">
+    <img src="https://img.shields.io/badge/Support%20the%20Project-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white" alt="Support the project with PayPal">
+  </a>
+</p>
 
 **Deterministic SQL query optimizer and static analyzer for Microsoft SQL Server, written in C# on .NET 8** — available as an ASP.NET Core REST API and as a local Windows Forms desktop application.
 
