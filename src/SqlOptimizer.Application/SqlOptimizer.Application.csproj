@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>SqlOptimizer.Application</RootNamespace>
+    <Description>Application layer: use-case interfaces, DTOs, pipeline services (analyzer, optimizer, prompt generator).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlOptimizer.Domain\SqlOptimizer.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

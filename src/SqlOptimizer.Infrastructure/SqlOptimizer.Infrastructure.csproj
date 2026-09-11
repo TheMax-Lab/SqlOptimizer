@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>SqlOptimizer.Infrastructure</RootNamespace>
+    <Description>Infrastructure: T-SQL parser (ScriptDom), SQL Server provider, LLM clients, validation and execution plan parsing.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
+    <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom" Version="180.102.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlOptimizer.Application\SqlOptimizer.Application.csproj" />
+    <ProjectReference Include="..\SqlOptimizer.Domain\SqlOptimizer.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

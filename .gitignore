@@ -1,0 +1,69 @@
+## .NET / Visual Studio
+## Build results
+[Bb]in/
+[Oo]bj/
+artifacts/
+[Tt]est[Rr]esults/
+coverage*.xml
+coverage*.json
+*.coverage
+*.trx
+
+## Build results (specific configurations)
+Debug/
+Debug_*/
+Release/
+Release_*/
+x64/
+x86/
+WpfApp1/
+bld/
+[Bb]uild/
+[Oo]utput/
+
+## Visual Studio user-specific files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.userprefs
+
+## MonoDevelop / Rider / other editors
+*.dotCover
+*_ReSharper*/
+*.[Mm]ono/[Mm]onoC#-[Mm]ono.rc
+__pycache__/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+**/packages/
+
+## .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.dg.sln
+
+## Local app settings and secrets
+appsettings.*.local.json
+*.db
+*.sqlite
+
+## Local development scratch (baseline logs, ad-hoc helpers)
+_baseline_*.log
+_run_offline_tests.ps1
+_connect_check/
+
+## OS / editor artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+

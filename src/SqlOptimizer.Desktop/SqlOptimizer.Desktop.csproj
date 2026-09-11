@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>SqlOptimizer.Desktop</RootNamespace>
+    <AssemblyName>SqlOptimizer.Desktop</AssemblyName>
+    <Description>Local Windows Forms front-end for the SqlOptimizer engine. Communicates with the SqlOptimizer.Desktop.Engine sidecar exclusively over stdin/stdout JSON; it never references .NET 8 assemblies and never uses HTTP.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,81 @@
+name: Build and Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+# All jobs run on Windows:
+#  - SqlOptimizer.Desktop targets .NET Framework 4.8 (WinForms) and is built
+#    with the .NET Framework 4.8 Developer Pack that ships preinstalled on
+#    the windows-2022 image.
+#  - The .NET 8 projects are built with the .NET 8 SDK.
+#
+# Job "build-and-test" runs the full offline test suite (651 tests, no
+# external dependencies).
+#
+# Job "integration-tests" runs the 51 Docker-dependent SQL Server
+# integration tests (Testcontainers). Docker Desktop is preinstalled on
+# windows-2022; the fixture also supports an external SQL Server via the
+# SQLOPTIMIZER_INTEGRATION_SQLSERVER environment variable. When Docker is
+# unavailable the fixture fails fast with an explicit message, so a broken
+# integration environment is never reported as green.
+
+jobs:
+  build-and-test:
+    name: Build solution and run offline tests
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore SqlOptimizer.sln
+
+      - name: Build solution (14 projects)
+        run: dotnet build SqlOptimizer.sln -c Release --no-restore
+
+      - name: Run offline test suite (651 tests)
+        run: |
+          dotnet test tests/SqlOptimizer.Domain.Tests -c Release --no-build --nologo
+          dotnet test tests/SqlOptimizer.Rules.Tests -c Release --no-build --nologo
+          dotnet test tests/SqlOptimizer.Application.Tests -c Release --no-build --nologo
+          dotnet test tests/SqlOptimizer.Api.Tests -c Release --no-build --nologo
+          dotnet test tests/SqlOptimizer.Infrastructure.Tests -c Release --no-build --nologo
+
+  integration-tests:
+    name: SQL Server integration tests (Docker)
+    needs: build-and-test
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Ensure Docker engine runs Linux containers
+        shell: pwsh
+        run: |
+          $ostype = (docker info --format "{{.OSType}}").Trim()
+          if ($ostype -ne "linux") {
+            docker context use desktop-linux
+            $ostype = (docker info --format "{{.OSType}}").Trim()
+          }
+          if ($ostype -ne "linux") {
+            throw "Docker is not available in Linux-container mode; integration tests cannot run."
+          }
+
+      - name: Run SQL Server integration tests
+        run: |
+          dotnet test tests/SqlOptimizer.Api.IntegrationTests --nologo
+          dotnet test tests/SqlOptimizer.Infrastructure.IntegrationTests --nologo

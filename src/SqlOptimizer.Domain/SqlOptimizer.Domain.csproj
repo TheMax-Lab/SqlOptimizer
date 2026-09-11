@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>SqlOptimizer.Domain</RootNamespace>
+    <Description>Core domain model: SQL AST, analysis results, rule engine contracts, metadata and optimization plan.</Description>
+  </PropertyGroup>
+
+</Project>

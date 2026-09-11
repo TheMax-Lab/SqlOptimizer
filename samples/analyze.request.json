@@ -1,0 +1,5 @@
+{
+  "sql": "SELECT * FROM dbo.Customers WHERE Name LIKE N'%lovelace%'",
+  "dialect": "SqlServer",
+  "includeAst": false
+}

@@ -1,0 +1,12 @@
+{
+  "sql": "SELECT * FROM dbo.Customers WHERE City = N'Rome'",
+  "dialect": "SqlServer",
+  "options": {
+    "useLlm": true,
+    "generateIndexes": true,
+    "validateSemantics": true,
+    "generatePrompt": true,
+    "maxCandidates": 3,
+    "strategy": "Balanced"
+  }
+}

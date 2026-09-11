@@ -1,0 +1,4 @@
+{
+  "sql": "DELETE FROM dbo.Customers",
+  "dialect": "SqlServer"
+}

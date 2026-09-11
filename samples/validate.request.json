@@ -1,0 +1,7 @@
+{
+  "originalSql": "SELECT c.Id, c.Name FROM dbo.Customers c WHERE c.City = N'Rome'",
+  "candidateSql": "SELECT c.Id, c.Name FROM dbo.Customers AS c WHERE c.City = N'Rome'",
+  "compareResults": true,
+  "maxRowsForComparison": 1000,
+  "dialect": "SqlServer"
+}
